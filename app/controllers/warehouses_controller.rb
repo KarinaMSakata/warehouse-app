@@ -21,5 +21,5 @@ class WarehousesController < ApplicationController
       flash.now.notice = 'Galpão não cadastrado.'
       render 'new' 
     end
-  end
+  end 
 end

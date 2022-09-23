@@ -52,17 +52,31 @@ RSpec.describe Warehouse, type: :model do
         expect(warehouse.valid?).to eq false
       end
     end 
+    context 'uniqueness' do
 
-    it 'false when code is already in use' do
-      first_warehouse = Warehouse.create(name: 'Rio', code: 'RIO', address:'Endereço',
-      cep: '25000-000', city: 'Rio', area:1000,
-      description:'Alguma descrição')
+      it 'false when code is already in use' do
+        first_warehouse = Warehouse.create(name: 'Rio', code: 'RIO', address:'Endereço',
+                                           cep: '25000-000', city: 'Rio', area:1000,
+                                           description:'Alguma descrição')
 
-      seconde_warehouse = Warehouse.new(name: 'Niteroi', code: 'RIO', address:'Avenida',
-      cep: '35000-000', city: 'Niteroi', area:1500,
-      description:'Outra descrição')
-      
-      expect(seconde_warehouse.valid?).to eq false
+        second_warehouse = Warehouse.new(name: 'Niteroi', code: 'RIO', address:'Avenida',
+                                          cep: '35000-000', city: 'Niteroi', area:1500,
+                                          description:'Outra descrição')
+        
+        expect(second_warehouse.valid?).to eq false
+      end
+
+      it 'false when name is already in use' do
+        first_warehouse = Warehouse.create(name: 'Rio', code: 'RIO', address:'Endereço',
+                                           cep: '25000-000', city: 'Rio', area:1000,
+                                           description:'Alguma descrição')
+
+        second_warehouse = Warehouse.new(name: 'Rio', code: 'SDU', address:'Avenida',
+                                          cep: '35000-000', city: 'Niteroi', area:1500,
+                                          description:'Outra descrição')
+        
+        expect(second_warehouse.valid?).to eq false
+      end
     end
   end
 end

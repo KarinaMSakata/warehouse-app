@@ -1,3 +1,10 @@
+<% def formata_cep(cep) %>
+  <% cep_formatado = cep[0..4] %>
+  <% cep_formatado << '-' %>
+  <% cep_formatado << cep[5..7] %>
+  <% cep_formatado %>
+<% end %>
+
 <h1>Galpão <%= @warehouse.code %></h1>
 <h2><%=@warehouse.description %></h2>
 <div>
@@ -5,8 +12,10 @@
     <dt><strong>Nome: </strong><%=@warehouse.name %></dt>
     <dt><strong>Cidade: </strong><%=@warehouse.city %></dt>
     <dt><strong>Área: </strong><%=@warehouse.area %> m2</dt>
-    <dt><strong>Endereço: </strong><%=@warehouse.address %> <strong> - CEP: </strong><%=@warehouse.cep %></dt>
+    <dt><strong>Endereço: </strong><%=@warehouse.address %> <strong> - CEP: </strong><%= formata_cep(@warehouse.cep) %></dt>
   </dl>
 </div>
+
+
 
 <%= link_to 'Voltar', root_path%>
