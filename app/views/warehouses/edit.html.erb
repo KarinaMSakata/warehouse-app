@@ -1,0 +1,78 @@
+<h1>Editar Galpão</h1>
+
+<% if @warehouse.errors.any? %>
+  <p> Verifique os erros abaixo: </p>
+  <ul>
+    <% @warehouse.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(model: @warehouse) do |f| %>
+  <div class="center">
+    <div class="container">
+      <div class="row">
+        <div class="col-25">
+          <%= f.label :name %>
+        </div>
+        <div class="col-75">
+          <%= f.text_field :name %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <%= f.label :description %>
+        </div>
+        <div class="col-75">
+          <%= f.text_area :description %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <%= f.label :code %>
+        </div>
+        <div class="col-75">
+          <%= f.text_field :code %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <%= f.label :address %>
+        </div>
+        <div class="col-75">
+          <%= f.text_field :address %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <%= f.label :city %>
+        </div>
+        <div class="col-75">
+          <%= f.text_field :city %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <%= f.label :cep, "CEP (Digite apenas números)" %>
+        </div> 
+        <div class="col-75">
+          <%= f.number_field :cep %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <%= f.label :area, "Área (Digite apenas números)"%>
+        </div>
+        <div class="col-75">
+          <%= f.number_field :area %>
+        </div>
+      </div>
+    <div>
+    <br>
+      <%= f.submit 'Enviar' %>
+    </div>
+    </div>
+  </div>
+
+<% end %>
