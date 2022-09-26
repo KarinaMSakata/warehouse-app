@@ -1,0 +1,44 @@
+<% def formata_cnpj(registration_number) %>
+  <% cnpj_formatado = registration_number[0..1] %>
+  <% cnpj_formatado << '.' %>
+  <% cnpj_formatado << registration_number[2..4] %>
+  <% cnpj_formatado << '.' %>
+  <% cnpj_formatado << registration_number[5..7] %>
+  <% cnpj_formatado << '/' %>
+  <% cnpj_formatado << registration_number[8..11] %>
+  <% cnpj_formatado << '-' %>
+  <% cnpj_formatado << registration_number[12..13] %>
+  <% cnpj_formatado %>
+<% end %>
+
+
+<% def formata_telefone(phone_number) %>
+  <% telefone_formatado = '(' %>
+  <% telefone_formatado << phone_number[0..1] %>
+  <% telefone_formatado << ')' %>
+  <% telefone_formatado << phone_number[2..5] %>
+  <% telefone_formatado << '-' %>
+  <% telefone_formatado << phone_number[6..9] %>
+  <% telefone_formatado %>
+<% end %>
+
+
+<h1>Fornecedor <%=@supplier.brand_name %></h1>
+<h2><%=@supplier.corporate_name %></h2>
+
+<div>
+  <dl>
+    <dt><strong>CNPJ: </strong><%=formata_cnpj(@supplier.registration_number)%></dt>
+    <%if @supplier.full_address?|| @supplier.city?|| @supplier.state?%>
+      <dt><strong>Endereço: </strong><%=@supplier.full_address%> - <%=@supplier.city%>-<%=@supplier.state%></dt>
+    <%end%>
+
+    <%if @supplier.phone?%>
+      <dt><strong>Telefone: </strong><%=formata_telefone(@supplier.phone)%></dt>
+    <%end%>
+    <dt><strong>E-mail: </strong><%=@supplier.email%></dt>
+  </dl>
+</div>
+
+<p><%=link_to 'Voltar', root_url%></p>
+<p><%=link_to 'Editar Fornecedor', edit_supplier_url%></p>

@@ -1,0 +1,85 @@
+<% if @supplier.errors.any? %>
+<p> Verifique os erros abaixo: </p>
+<ul>
+  <% @supplier.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
+
+<%= form_with(model: @supplier) do |s| %>
+  <div class="center">
+    <div class="container">
+      <div class="row">
+        <div class="col-25">
+          <%= s.label :corporate_name, "Razão Social" %>
+        </div>
+        <div class="col-75">
+          <%= s.text_field :corporate_name %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <%= s.label :brand_name, "Nome Fantasia" %>
+        </div>
+        <div class="col-75">
+          <%= s.text_field :brand_name %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <%= s.label :registration_number, "CNPJ" %>
+        </div>
+        <div class="col-75">
+          <%= s.number_field :registration_number %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <%= s.label :full_address, "Endereço" %>
+        </div>
+        <div class="col-75">
+          <%= s.text_field :full_address %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <%= s.label :city, "Cidade" %>
+        </div>
+        <div class="col-75">
+          <%= s.text_field :city %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <%= s.label :state, "Estado" %>
+        </div> 
+        <div class="col-75">
+          <%= s.text_field :state %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <%= s.label :phone, "Telefone" %>
+        </div>
+      <div class="col-75">
+        <%= s.number_field :phone %>
+      </div>
+    </div>
+      <div class="row">
+        <div class="col-25">
+          <%= s.label :email, "E-mail" %>
+        </div>
+        <div class="col-75">
+          <%= s.email_field :email %>
+        </div>
+      </div>
+    <div>
+    <br>
+      <%= s.submit 'Enviar' %>
+    </div>
+    </div>
+  </div>
+  
+  <% end %>
+  

@@ -44,4 +44,15 @@ describe 'Usuario visita tela inicial' do
     #Assert
     expect(page).to have_content('Não existem galpões cadastrados')
   end
+
+  it 'e vê a opção de Fornecedores' do
+    #Arrange
+
+    #Act
+    visit root_url
+
+    #Assert
+    expect(page).to have_content 'Fornecedores'
+
+  end
 end
