@@ -1,0 +1,68 @@
+<h1>Cadastrar Novo Modelo de Produto</h1>
+
+<%= form_with(model: @product_model) do |pm| %>
+  <div class="center">
+    <div class="container">
+      <div class="row">
+        <div class="col-25">
+          <%= pm.label :name, "Nome" %>
+        </div>
+        <div class="col-75">
+          <%= pm.text_field :name %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <%= pm.label :weight, "Peso" %>
+        </div>
+        <div class="col-75">
+          <%= pm.number_field :weight %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <%= pm.label :width, "Largura" %>
+        </div>
+        <div class="col-75">
+          <%= pm.number_field :width %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <%= pm.label :height, "Altura" %>
+        </div>
+        <div class="col-75">
+          <%= pm.number_field :height %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <%= pm.label :depth, "Profundidade" %>
+        </div>
+        <div class="col-75">
+          <%= pm.number_field :depth %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <%= pm.label :sku, "SKU" %>
+        </div>
+        <div class="col-75">
+          <%= pm.text_field :sku %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <%= pm.label :supplier_id, "Fornecedor" %>
+        </div>
+        <div class="col-75">
+          <%= pm.collection_select :supplier_id, @suppliers, :id, :brand_name %>
+        </div>
+      </div>
+      <div>
+        <br>
+        <%=pm.submit 'Enviar'%>
+      </div>
+    </div>
+  </div>
+  <% end %>
