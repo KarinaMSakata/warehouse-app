@@ -63,7 +63,7 @@
           <%= pm.label :supplier_id, "Fornecedor" %>
         </div>
         <div class="col-75">
-          <%= pm.collection_select :supplier_id, @suppliers, :id, :brand_name %>
+          <%= pm.collection_select :supplier_id, @suppliers.order(:brand_name), :id, :brand_name %>
         </div>
       </div>
       <div>

@@ -1,7 +1,20 @@
 require 'rails_helper'
 
 describe 'Usuário edita um modelo de produto' do
+  it 'e deve estar autenticado' do
+    #Arrange
+
+    #Act
+    visit root_url
+    click_on 'Fornecedores'
+
+    #Assert
+    expect(current_url).to eq new_user_session_url
+  end
+
   it 'a partir da página de detalhes' do 
+    user = User.create!(email: 'karina@gmail.com', password:'password', name: 'Karina')
+
     fornecedor = Supplier.create!(corporate_name: 'Samsung Eletronica da Amazonia LTDA', brand_name: 'Samsung', registration_number: '00280273000137',
                                   full_address: 'Distrito Industrial, 1000', city: 'Manaus', state: 'AM', phone: '9230853976', email: 'contato@samsung.com')
 
@@ -9,6 +22,7 @@ describe 'Usuário edita um modelo de produto' do
                          sku: 'TV32-SAMSU-XPTO90-12', supplier: fornecedor)
 
     #Act
+    login_as(user)
     visit root_url
     click_on 'Fornecedores'
     click_on 'Samsung'
@@ -29,6 +43,8 @@ describe 'Usuário edita um modelo de produto' do
 
   it 'com sucesso' do
     #Arrange 
+    user = User.create!(email: 'karina@gmail.com', password:'password', name: 'Karina')
+
     fornecedor = Supplier.create!(corporate_name: 'Samsung Eletronica da Amazonia LTDA', brand_name: 'Samsung', registration_number: '00280273000137',
                                   full_address: 'Distrito Industrial, 1000', city: 'Manaus', state: 'AM', phone: '9230853976', email: 'contato@samsung.com')
 
@@ -36,6 +52,7 @@ describe 'Usuário edita um modelo de produto' do
                          sku: 'TV32-SAMSU-XPTO90-12', supplier: fornecedor)
 
     #Act
+    login_as(user)
     visit root_url
     click_on 'Fornecedores'
     click_on 'Samsung'
@@ -53,6 +70,8 @@ describe 'Usuário edita um modelo de produto' do
 
   it 'e mantém os campos obrigatórios' do
     #Arrange 
+    user = User.create!(email: 'karina@gmail.com', password:'password', name: 'Karina')
+
     fornecedor = Supplier.create!(corporate_name: 'Samsung Eletronica da Amazonia LTDA', brand_name: 'Samsung', registration_number: '00280273000137',
                                   full_address: 'Distrito Industrial, 1000', city: 'Manaus', state: 'AM', phone: '9230853976', email: 'contato@samsung.com')
 
@@ -60,6 +79,7 @@ describe 'Usuário edita um modelo de produto' do
                          sku: 'TV32-SAMSU-XPTO90-12', supplier: fornecedor)
 
     #Act
+    login_as(user)
     visit root_url
     click_on 'Fornecedores'
     click_on 'Samsung'

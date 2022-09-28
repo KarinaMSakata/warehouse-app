@@ -1,6 +1,16 @@
 require 'rails_helper'
 
 describe 'Usuario visita tela inicial' do
+  it 'e deve estar autenticado' do
+    #Arrange
+
+    #Act
+    visit(root_path)
+
+    #Assert
+    expect(current_url).to eq(new_user_session_url)
+  end 
+
   it 'e vê o nome da app' do
     #Arrange
 
@@ -13,13 +23,16 @@ describe 'Usuario visita tela inicial' do
 
   it 'e vê os galpões cadastrados' do
     #Arrange
+    user = User.create!(email: 'karina@gmail.com', password:'password', name: 'Karina')
+
     #cadastrar 2 galpões: Rio e Maceió
     Warehouse.create(name: 'Rio', code: 'SDU', city:'Rio de Janeiro', area: 60_000, 
                      address: 'Av. do Porto, 1000', cep: '20000000', description: 'Galpão do Rio')
     Warehouse.create(name: 'Maceió', code:'MCZ', city:'Maceió', area: 50_000,
                      address: 'Av. Atlantica, 50', cep: '80000000', description: 'Perto do Aeroporto')
-
+        
     #Act
+    login_as(user)
     visit(root_path)
 
     #Assert
@@ -37,8 +50,10 @@ describe 'Usuario visita tela inicial' do
 
   it 'e não exitem galpões cadastrados' do
     #Arrange
-
+    user = User.create!(email: 'karina@gmail.com', password:'password', name: 'Karina')
+    
     #Act
+    login_as(user)
     visit(root_path)
 
     #Assert

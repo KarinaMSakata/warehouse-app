@@ -1,9 +1,22 @@
 require 'rails_helper'
 describe 'Usuário cadastra um fornecedor' do
-  it 'a partir da tela de fornecedores' do 
+  it 'e deve estar autenticado' do
     #Arrange
 
     #Act
+    visit root_url
+    click_on 'Fornecedores'
+
+    #Assert
+    expect(current_url).to eq new_user_session_url
+  end
+  
+  it 'a partir da tela de fornecedores' do 
+    #Arrange
+    user = User.create!(email: 'karina@gmail.com', password:'password', name: 'Karina')
+
+    #Act
+    login_as(user)
     visit root_url
     click_on 'Fornecedores'
     click_on 'Cadastrar Fornecedor'
@@ -21,8 +34,10 @@ describe 'Usuário cadastra um fornecedor' do
 
   it 'com sucesso' do
     #Arrange
+    user = User.create!(email: 'karina@gmail.com', password:'password', name: 'Karina') 
 
     #Act
+    login_as(user)
     visit root_url
     click_on 'Fornecedores'
     click_on 'Cadastrar Fornecedor'
@@ -48,8 +63,10 @@ describe 'Usuário cadastra um fornecedor' do
 
   it 'com dados incompletos' do
     #Arrange
+    user = User.create!(email: 'karina@gmail.com', password:'password', name: 'Karina')
     
     #Act
+    login_as(user)
     visit root_url
     click_on 'Fornecedores'
     click_on 'Cadastrar Fornecedor'

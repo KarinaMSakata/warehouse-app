@@ -77,11 +77,19 @@ width: 60%
       <nav>
         <%=link_to 'Fornecedores', suppliers_url%>
         <%=link_to 'Modelos de Produtos', product_models_url%>
+        <%=link_to 'Registrar Pedido', new_order_url%>
+        <%if user_signed_in?%>
+          <%= current_user.email %>
+          <%= button_to 'Sair', destroy_user_session_url, method: :delete%>
+        <% else %>
+          <%= link_to 'Fazer Login', new_user_session_url%>
+        <% end %>
       </nav>
       </header>
       <main>
     <div>
-      <%= notice %>
+      <p class="alert"><%= alert %></p>
+      <p class="notice"><%= notice %></p>
     </div>
       <%= yield %>
     </main>

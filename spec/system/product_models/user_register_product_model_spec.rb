@@ -1,8 +1,21 @@
 require 'rails_helper'
 
 describe 'Usuário cadastra um modelo de produto' do
+  it 'e deve estar autenticado' do
+    #Arrange
+
+    #Act
+    visit root_url
+    click_on 'Modelos de Produtos'
+
+    #Assert
+    expect(current_url).to eq new_user_session_url
+  end
+
   it 'com sucesso' do
     #Arrange
+    user = User.create!(email: 'karina@gmail.com', password:'password', name: 'Karina')
+
     fornecedor = Supplier.create!(corporate_name: 'Samsung Eletronica da Amazonia LTDA', brand_name: 'Samsung', registration_number: '00280273000137',
                                   full_address: 'Distrito Industrial, 1000', city: 'Manaus', state: 'AM', phone: '9230853976', email: 'contato@samsung.com')
                                   
@@ -10,6 +23,7 @@ describe 'Usuário cadastra um modelo de produto' do
                                         full_address: 'Avenida Doutor Chucri Zaidan, 940', city: 'São Paulo', state: 'SP', phone: '1140027052', email: 'contato@lg.com')
                
     #Act
+    login_as(user)
     visit root_url
     click_on 'Modelos de Produtos'
     click_on 'Cadastrar Novo'
@@ -33,10 +47,13 @@ describe 'Usuário cadastra um modelo de produto' do
 
   it 'e deve preencher todos os campos' do
     #Arrange
+    user = User.create!(email: 'karina@gmail.com', password:'password', name: 'Karina')
+
     fornecedor = Supplier.create!(corporate_name: 'Samsung Eletronica da Amazonia LTDA', brand_name: 'Samsung', registration_number: '00280273000137',
                                   full_address: 'Distrito Industrial, 1000', city: 'Manaus', state: 'AM', phone: '9230853976', email: 'contato@samsung.com')
   
     #Act
+    login_as(user)
     visit root_url
     click_on 'Modelos de Produtos'
     click_on 'Cadastrar Novo'
