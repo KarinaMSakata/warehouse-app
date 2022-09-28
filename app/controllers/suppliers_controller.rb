@@ -4,7 +4,9 @@ class SuppliersController < ApplicationController
     @suppliers = Supplier.all
   end
 
-  def show; end
+  def show
+   @product_model = @supplier.product_models
+  end
 
   def new
     @supplier = Supplier.new

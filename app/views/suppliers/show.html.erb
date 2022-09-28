@@ -40,5 +40,19 @@
   </dl>
 </div>
 
-<p><%=link_to 'Voltar', root_url%></p>
 <p><%=link_to 'Editar Fornecedor', edit_supplier_url%></p>
+
+
+<h2>Produtos/Estoque</h2>
+<div>
+  <dl>
+    <% @product_model.each do |pm| %>
+        <dt><strong><%=link_to pm.name, pm %></strong></dt>
+        <dt><strong>SKU: </strong><%=pm.sku%></dt>
+        <dt><strong>Dimensão: </strong><%=pm.height%>cm x <%=pm.width%>cm x <%=pm.depth%>cm </dt>
+        <dt><strong>Peso: </strong><%=pm.weight%>g</dt>
+    <%end%>
+  <dl>
+</div>
+
+<p><%=link_to 'Voltar', root_url%></p>
