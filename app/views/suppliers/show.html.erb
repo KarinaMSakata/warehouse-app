@@ -23,20 +23,20 @@
 <% end %>
 
 
-<h1>Fornecedor <%=@supplier.brand_name %></h1>
+<h1><%= Supplier.model_name.human%> <%=@supplier.brand_name %></h1>
 <h2><%=@supplier.corporate_name %></h2>
 
 <div>
   <dl>
-    <dt><strong>CNPJ: </strong><%=formata_cnpj(@supplier.registration_number)%></dt>
+    <dt><strong><%= Supplier.human_attribute_name(:registration_number) %>: </strong><%=formata_cnpj(@supplier.registration_number)%></dt>
     <%if @supplier.full_address?|| @supplier.city?|| @supplier.state?%>
-      <dt><strong>Endereço: </strong><%=@supplier.full_address%> - <%=@supplier.city%>-<%=@supplier.state%></dt>
+      <dt><strong><%= Supplier.human_attribute_name(:full_address) %>: </strong><%=@supplier.full_address%> - <%=@supplier.city%>-<%=@supplier.state%></dt>
     <%end%>
 
     <%if @supplier.phone?%>
-      <dt><strong>Telefone: </strong><%=formata_telefone(@supplier.phone)%></dt>
+      <dt><strong><%= Supplier.human_attribute_name(:phone) %>: </strong><%=formata_telefone(@supplier.phone)%></dt>
     <%end%>
-    <dt><strong>E-mail: </strong><%=@supplier.email%></dt>
+    <dt><strong><%= Supplier.human_attribute_name(:email) %>: </strong><%=@supplier.email%></dt>
   </dl>
 </div>
 
@@ -48,9 +48,9 @@
   <dl>
     <% @product_model.each do |pm| %>
         <dt><strong><%=link_to pm.name, pm %></strong></dt>
-        <dt><strong>SKU: </strong><%=pm.sku%></dt>
+        <dt><strong><%= ProductModel.human_attribute_name(:sku) %>: </strong><%=pm.sku%></dt>
         <dt><strong>Dimensão: </strong><%=pm.height%>cm x <%=pm.width%>cm x <%=pm.depth%>cm </dt>
-        <dt><strong>Peso: </strong><%=pm.weight%>g</dt>
+        <dt><strong><%= ProductModel.human_attribute_name(:weight) %>: </strong><%=pm.weight%>g</dt>
     <%end%>
   <dl>
 </div>

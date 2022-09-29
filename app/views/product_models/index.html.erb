@@ -7,9 +7,9 @@
     <div>
       <h2><%=pm.name%></h2>
       <dl>
-        <dt>SKU</dt>
+        <dt><%= ProductModel.human_attribute_name(:sku) %></dt>
         <dd><%=pm.sku%></dd>
-        <dt>Fornecedor</dt>
+        <dt><%= Supplier.model_name.human %></dt>
         <dd><%=pm.supplier.brand_name%></dd>
       </dl>
     </div>

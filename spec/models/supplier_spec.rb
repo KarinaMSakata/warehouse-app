@@ -56,4 +56,18 @@ RSpec.describe Supplier, type: :model do
       end
     end
   end
+
+  describe '#full_description' do 
+    it 'exibe o nome fantasia e a razão social' do
+      #Arrange
+      s = Supplier.new(brand_name: 'Americanas', corporate_name: 'B2W do Brasil LTDA')
+
+      #Act
+      result = s.full_description
+
+      #Assert
+      expect(result).to eq 'Americanas | B2W do Brasil LTDA'
+    end
+
+  end
 end 

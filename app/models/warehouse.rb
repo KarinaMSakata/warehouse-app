@@ -3,4 +3,8 @@ class Warehouse < ApplicationRecord
   validates :name, :code, uniqueness: true
   validates :code, length: {is: 3}
   validates :cep, length: {is: 8}  
+
+  def full_description
+    "#{code} | #{name}"
+  end
 end

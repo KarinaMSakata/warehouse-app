@@ -6,4 +6,7 @@ class Supplier < ApplicationRecord
   validates :registration_number, numericality: true
   #validates :phone, length: {is: 10}
 
+  def full_description
+    "#{brand_name} | #{corporate_name}"
+  end
 end

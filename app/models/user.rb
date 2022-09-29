@@ -5,4 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
  
   validates :name, presence: true
+
+  def description
+    "#{name} | #{email}" 
+  end
 end

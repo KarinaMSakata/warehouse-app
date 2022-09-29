@@ -19,7 +19,7 @@ describe 'Usuário cadastra um pedido' do
     Warehouse.create!(name: 'Gapão do Rio', code: 'SDU', city:'Rio de Janeiro', area: 60_000, 
                       address: 'Av. do Porto, 1000', cep: '20000000', description: 'Galpão do Rio')
       
-    warehouse = Warehouse.create(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100_000,
+    warehouse = Warehouse.create!(name: 'Aeroporto SP', code: 'GRU', city: 'Guarulhos', area: 100_000,
                                  address: 'Avenida do Aeroporto, 1000', cep: '15000000', description: 'Galpão destinado para cargas internacionais.')
                                         
     Supplier.create!(corporate_name: 'LG Eletronica do Brasil', brand_name: 'LG', registration_number: '01166372000236',
@@ -27,19 +27,22 @@ describe 'Usuário cadastra um pedido' do
 
     supplier = Supplier.create!(corporate_name: 'Samsung Eletronica da Amazonia LTDA', brand_name: 'Samsung', registration_number: '00280273000137',
                                 full_address: 'Distrito Industrial, 1000', city: 'Manaus', state: 'AM', phone: '9230853976', email: 'contato@samsung.com')
-   
+    
+    allow(SecureRandom).to receive(:alphanumeric).and_return ('ABCD123456')
+  
     #Act
     login_as(user)
     visit root_url
     click_on 'Registrar Pedido'
-    select warehouse.name, from: 'Galpão Destino'
-    select supplier.corporate_name, from: 'Fornecedor'
+    select 'GRU | Aeroporto SP', from: 'Galpão Destino'
+    select 'Samsung | Samsung Eletronica da Amazonia LTDA', from: 'Fornecedor'
     fill_in 'Data Prevista de Entrega', with: '20/12/2022'
     click_on 'Gravar'
     
     #Assert
     expect(page).to have_content 'Pedido registrado com sucesso.'
-    expect(page).to have_content 'Galpão Destino: Aeroporto SP'
+    expect(page).to have_content 'Pedido ABCD123456'
+    expect(page).to have_content 'Galpão Destino: GRU | Aeroporto SP'
     expect(page).to have_content 'Fornecedor: Samsung Eletronica da Amazonia LTDA'
     expect(page).to have_content 'Usuário Responsável: Maria | maria@gmail.com'
     expect(page).to have_content 'Data Prevista de Entrega: 20/12/2022'
