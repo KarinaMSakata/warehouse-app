@@ -5,15 +5,16 @@
   <% cep_formatado %>
 <% end %>
 
-<h1><%= Warehouse.model_name.human %> <%= @warehouse.code %></h1>
-<h2><%=@warehouse.description %></h2>
+<h1><%= Warehouse.model_name.human %> <%= @warehouse.code.upcase %></h1>
+<h2><%=@warehouse.description.capitalize %></h2>
 <div>
   <dl>
-    <dt><strong><%= Warehouse.human_attribute_name(:name)%>: </strong><%=@warehouse.name %></dt>
-    <dt><strong><%= Warehouse.human_attribute_name(:city)%>: </strong><%=@warehouse.city %></dt>
-    <dt><strong><%= Warehouse.human_attribute_name(:area)%>: </strong><%=@warehouse.area %> m2</dt>
-    <dt><strong>Endereço: </strong><%=@warehouse.address %> <strong> - <%= Warehouse.human_attribute_name(:cep)%>: </strong><%= formata_cep(@warehouse.cep) %></dt>
-  </dl>
+    <dt><strong><%= Warehouse.human_attribute_name(:name)%>:</strong> <%= @warehouse.name %> </dt>
+    <dt><strong><%= Warehouse.human_attribute_name(:city)%>:</strong> <%= @warehouse.city %> </dt>
+    <dt><strong><%= Warehouse.human_attribute_name(:area)%>:</strong> <%= @warehouse.area %> m2</dt>
+    <dt><strong><%= Warehouse.human_attribute_name(:address)%>:</strong> <%= @warehouse.address %> <strong> - <%= Warehouse.human_attribute_name(:cep)%>: </strong><%= formata_cep(@warehouse.cep) %></dt>
+                                     
+   </dl>
 </div>
 
 
