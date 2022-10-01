@@ -34,6 +34,31 @@ RSpec.describe Order, type: :model do
       expect(result).to be true
     end
 
+    it 'galpão deve ser obrigatório' do
+      #Arrange
+      order = Order.new(warehouse: nil)
+      
+      #Act 
+      order.valid?
+      result = order.errors.include? :warehouse
+    
+      #Assert
+      expect(result).to be true
+    end
+
+    it 'fornecedor deve ser obrigatório' do
+      #Arrange
+      order = Order.new(supplier: nil)
+      
+      #Act 
+      order.valid?
+      result = order.errors.include? :supplier
+    
+      #Assert
+      expect(result).to be true
+    end
+
+
     it 'data estimada de entrega não pode ser passada' do
       #Arrange
       order = Order.new(estimated_delivery_date: 1.day.ago)
