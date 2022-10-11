@@ -46,6 +46,7 @@ describe 'Usuário cadastra um pedido' do
     expect(page).to have_content 'Fornecedor: Samsung Eletronica da Amazonia LTDA'
     expect(page).to have_content 'Usuário Responsável: Maria | maria@gmail.com'
     expect(page).to have_content 'Data Prevista de Entrega: 20/12/2022'
+    expect(page).to have_content 'Status: Pendente'
     expect(page).not_to have_content 'Galpão do Rio'
     expect(page).not_to have_content 'LG Eletronica do Brasil'
   end

@@ -13,12 +13,12 @@ RSpec.describe Order, type: :model do
                                   full_address: 'Distrito Industrial, 1000', city: 'Manaus', state: 'AM', phone: '9230853976', email: 'contato@samsung.com')                               
 
       order = Order.new(user: user, warehouse: warehouse, 
-                        supplier: supplier, estimated_delivery_date: '2022-10-01')
+                        supplier: supplier, estimated_delivery_date: '2022-10-30')
       
       #Act 
       result = order.valid?
     
-      #
+      #Assert
       expect(result).to eq true
     end
 
@@ -107,7 +107,7 @@ RSpec.describe Order, type: :model do
                                   full_address: 'Distrito Industrial, 1000', city: 'Manaus', state: 'AM', phone: '9230853976', email: 'contato@samsung.com')                               
 
       order = Order.new(user: user, warehouse: warehouse, 
-                        supplier: supplier, estimated_delivery_date: '2022-10-01')
+                        supplier: supplier, estimated_delivery_date: '2022-10-30')
       
       #Act
       order.save!
@@ -129,7 +129,7 @@ RSpec.describe Order, type: :model do
                                   full_address: 'Distrito Industrial, 1000', city: 'Manaus', state: 'AM', phone: '9230853976', email: 'contato@samsung.com')                               
 
       first_order = Order.create!(user: user, warehouse: warehouse, 
-                                  supplier: supplier, estimated_delivery_date: '2022-10-01')
+                                  supplier: supplier, estimated_delivery_date: '2022-10-30')
 
       second_order = Order.new(user: user, warehouse: warehouse, 
                                supplier: supplier, estimated_delivery_date: '2022-11-15')
